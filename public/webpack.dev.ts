@@ -2,10 +2,14 @@ import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import base from './webpack.base';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const config: webpack.Configuration = merge(base, {
   mode: 'development',
+  output: {
+    filename: 'assets/js/[name]/[hash:8].bundle.js',
+    chunkFilename: 'assets/js/[name]/[hash:8].chunk.js',
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, '../build'),
@@ -13,11 +17,12 @@ const config: webpack.Configuration = merge(base, {
     host: '0.0.0.0',
     port: 9000,
     hot: true,
+    open: true,
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
   ],
 });
 

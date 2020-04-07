@@ -13,8 +13,6 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, '../build'),
     publicPath: '/',
-    filename: 'assets/js/[name].[hash:8].bundle.js',
-    chunkFilename: 'assets/js/[name].[contenthash:8].chunk.js',
   },
   module: {
     strictExportPresence: true,
@@ -75,14 +73,40 @@ const config: webpack.Configuration = {
         ],
       },
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: 'url-loader',
-        options: {
-          hash: 'sha512',
-          limit: 50,
-          publicPath: '/',
-          name: 'assets/img/[name].[hash:8].[ext]',
-        },
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              hash: 'sha512',
+              limit: 10000,
+              publicPath: '/',
+              name: 'assets/img/[name].[hash:8].[ext]',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75,
+              },
+            },
+          },
+        ],
       },
       {
         test: [/\.eot$/, /\.ttf$/, /\.woff$/, /\.woff2$/],
