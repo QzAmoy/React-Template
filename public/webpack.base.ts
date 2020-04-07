@@ -21,7 +21,7 @@ const config: webpack.Configuration = {
       { parser: { requireEnsure: false } },
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
+      /* {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         enforce: 'pre',
         use: [
@@ -35,11 +35,11 @@ const config: webpack.Configuration = {
           },
         ],
         include: path.resolve(__dirname, '../src'),
-      },
+      }, */
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
         resolve: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },

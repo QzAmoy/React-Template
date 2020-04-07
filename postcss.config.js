@@ -7,8 +7,7 @@ export default {
     'postcss-extend': {},
     'postcss-nested': {},
     'postcss-partial-import': {},
-    'autoprefixer': {},
-    'postcss-flexbugs-fixes': {}
+    autoprefixer: {},
+    'postcss-flexbugs-fixes': {},
   },
 };
-
