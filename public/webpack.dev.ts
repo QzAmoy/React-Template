@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import base from './webpack.base';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import base from './webpack.base';
 
 const config: webpack.Configuration = merge(base, {
   mode: 'development',

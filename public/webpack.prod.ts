@@ -1,10 +1,10 @@
-import path from 'path';
+/* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import base from './webpack.base';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import base from './webpack.base';
 
 const config: webpack.Configuration = merge(base, {
   mode: 'production',

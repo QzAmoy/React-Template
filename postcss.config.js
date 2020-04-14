@@ -1,4 +1,4 @@
-export default {
+module.export= {
   plugins: {
     'postcss-preset-env': {
       browsers: ['last 10 versions', '> 5%'],
@@ -7,7 +7,7 @@ export default {
     'postcss-extend': {},
     'postcss-nested': {},
     'postcss-partial-import': {},
-    autoprefixer: {},
+    'autoprefixer': {},
     'postcss-flexbugs-fixes': {},
   },
 };

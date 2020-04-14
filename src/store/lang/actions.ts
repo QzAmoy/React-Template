@@ -1,6 +1,6 @@
-import { ChangeLangAction, CHANGE_LANG, langs } from './types';
+import { ChangeLangAction, CHANGE_LANG, Langs } from './types';
 
-const changeLang = (lang: langs): ChangeLangAction => ({
+const changeLang = (lang: Langs): ChangeLangAction => ({
   type: CHANGE_LANG,
   lang,
 });

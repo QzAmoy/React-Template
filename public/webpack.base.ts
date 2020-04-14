@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -21,7 +22,7 @@ const config: webpack.Configuration = {
       { parser: { requireEnsure: false } },
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      /* {
+      {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         enforce: 'pre',
         use: [
@@ -35,7 +36,7 @@ const config: webpack.Configuration = {
           },
         ],
         include: path.resolve(__dirname, '../src'),
-      }, */
+      },
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         exclude: /node_modules/,

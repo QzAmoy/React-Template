@@ -1,9 +1,9 @@
-import { langState, langs, CHANGE_LANG, ChangeLangAction } from './types';
+import { LangState, Langs, CHANGE_LANG, ChangeLangAction } from './types';
 
-const initialState: langState = {
-  lang: langs.ZH,
+const initialState: LangState = {
+  lang: Langs.ZH,
 };
-const lang = (state = initialState, action: ChangeLangAction): langState => {
+const lang = (state = initialState, action: ChangeLangAction): LangState => {
   switch (action.type) {
     case CHANGE_LANG:
       return {
