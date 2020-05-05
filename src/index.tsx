@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import configureStore from './configureStore';
 import 'normalize.css';
 import App from './App';
 
@@ -14,8 +14,8 @@ const renderApp = () =>
     </Provider>,
     document.getElementById('root')
   );
-
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-  module.hot.accept('./App', renderApp);
+  module.hot.accept();
 }
+
 renderApp();

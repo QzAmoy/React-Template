@@ -18,6 +18,8 @@ const config: webpack.Configuration = merge(base, {
     host: '0.0.0.0',
     port: 9000,
     hot: true,
+    inline: true,
+    hotOnly: true
   },
   plugins: [
     new webpack.NamedModulesPlugin(),

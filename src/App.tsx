@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Langs } from './store/lang/types';
-import changeLang from './store/lang/actions';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './store';
+import { Langs } from './store/langConfig/types';
+import changeLang from './store/langConfig/actions';
 import './assets/css/index.css';
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(changeLang(Langs.EN));
-    return function cleanup() {
-      dispatch(changeLang(Langs.ZH));
-    };
-  });
-  return <span>App1</span>;
+  const lang = useSelector((store: RootState) => store.langConfig.lang);
+  const handleChangeLang = () => {
+    dispatch(changeLang(lang === Langs.ZH ? Langs.EN : Langs.ZH));
+  };
+  return (
+    <span>
+      {lang}
+      <button type="button" onClick={handleChangeLang}>
+        lang
+      </button>
+    </span>
+  );
 };
-
 export default App;
