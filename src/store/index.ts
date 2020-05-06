@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import langConfig from './langConfig';
+import sysConfigs from './sysConfigs';
 
-const rootReducer = combineReducers({ langConfig });
+const rootReducer = combineReducers({ sysConfigs });
 
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;
