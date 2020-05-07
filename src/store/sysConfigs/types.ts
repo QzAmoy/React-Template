@@ -8,16 +8,17 @@ export enum Langs {
   EN = 'en_US',
 }
 
-export type IsLogin = Boolean;
+export type IsLogin = boolean;
+export type Lang = string;
 
 export interface SysConfigState {
-  lang: Langs;
+  lang: Lang;
   isLogin: IsLogin;
 }
 
 export interface SetLangAction {
   type: SET_LANG;
-  lang: Langs;
+  lang: Lang;
 }
 
 export interface SetLoginStateAction {

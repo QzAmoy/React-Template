@@ -1,23 +1,26 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store';
-import { Langs } from './store/sysConfigs/types';
-import { setLang } from './store/sysConfigs/actions';
+import React, { lazy, Suspense } from 'react';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import Loading from './components/Loading';
+import LangSelector from './components/LangSelector';
 import './assets/css/index.css';
 
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Admin = lazy(() => import('./pages/Admin'));
+
 const App = () => {
-  const dispatch = useDispatch();
-  const lang = useSelector((store: RootState) => store.sysConfigs.lang);
-  const handleSetLang = () => {
-    dispatch(setLang(lang === Langs.ZH ? Langs.EN : Langs.ZH));
-  };
   return (
-    <span>
-      {lang}
-      <button type="button" onClick={handleSetLang}>
-        lang
-      </button>
-    </span>
+    <HashRouter>
+      <LangSelector />
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/admin" component={Admin} />
+        </Switch>
+      </Suspense>
+    </HashRouter>
   );
 };
 export default App;

@@ -40,7 +40,7 @@ const config: webpack.Configuration = {
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
+        use: [{ loader: 'babel-loader' }],
         resolve: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },

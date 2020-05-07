@@ -13,13 +13,14 @@ const config: webpack.Configuration = merge(base, {
   },
   devtool: 'inline-source-map',
   devServer: {
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, '../build'),
     compress: true,
     host: '0.0.0.0',
     port: 9000,
     hot: true,
     inline: true,
-    hotOnly: true
+    hotOnly: true,
   },
   plugins: [
     new webpack.NamedModulesPlugin(),

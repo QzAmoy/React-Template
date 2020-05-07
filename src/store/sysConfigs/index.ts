@@ -8,9 +8,9 @@ import {
 
 const initialState = {
   lang: Langs.ZH,
-  isLogin: false,
+  isLogin: true,
 };
-const lang = (
+const sysConfigs = (
   state = initialState,
   action: SysConfigActionTypes
 ): SysConfigState => {
@@ -29,4 +29,4 @@ const lang = (
       return state;
   }
 };
-export default lang;
+export default sysConfigs;

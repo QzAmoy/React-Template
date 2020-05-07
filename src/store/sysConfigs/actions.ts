@@ -3,11 +3,11 @@ import {
   SetLoginStateAction,
   SET_LANG,
   SET_LOGIN_STATE,
-  Langs,
+  Lang,
   IsLogin,
 } from './types';
 
-export const setLang = (lang: Langs): SetLangAction => ({
+export const setLang = (lang: Lang): SetLangAction => ({
   type: SET_LANG,
   lang,
 });
