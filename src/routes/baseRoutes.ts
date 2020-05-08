@@ -1,7 +1,7 @@
 const baseRoutes = [
   {
     key: 'index',
-    path: '/',
+    path: ['/', '/home'],
     exact: true,
     component: () => import('@/pages/Home'),
   },
