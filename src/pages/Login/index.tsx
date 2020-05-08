@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteChildrenProps } from 'react-router-dom';
-import { RootState } from '../../store';
-import { IsLogin } from '../../store/sysConfigs/types';
+import { RootState } from '@/store';
+import { IsLogin } from '@/store/sysConfigs/types';
 
 interface IProps extends RouteChildrenProps {
   isLogin: IsLogin;

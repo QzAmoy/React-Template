@@ -5,6 +5,10 @@
     "module": "commonjs",
     "noEmit": false,
     "jsx": "react",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
