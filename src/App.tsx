@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import { HashRouter, Switch } from 'react-router-dom';
-import baseRoutes from './routes/baseRoutes';
-import privateRoutes from './routes/privateRoutes';
-import RouteWithSubRoutes from './components/RouteWithSubRoutes';
-import PrivateRouteWithSubRoutes from './components/PrivateRouteWithSubRoutes';
-import Loading from './components/Loading';
-import './assets/css/index.css';
+import RouteWithSubRoutes from '@components/RouteWithSubRoutes';
+import PrivateRouteWithSubRoutes from '@components/PrivateRouteWithSubRoutes';
+import Loading from '@components/Loading';
+import privateRoutes from '@/routes/privateRoutes';
+import baseRoutes from '@/routes/baseRoutes';
+import '@css/index.css';
 
 const App = () => {
   return (

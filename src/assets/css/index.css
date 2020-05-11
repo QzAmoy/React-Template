@@ -4,4 +4,5 @@ body {
   background-color: #eee;
   background-size: 100%;
   transform: none;
+  background: url('~@img/mother.png');
 }

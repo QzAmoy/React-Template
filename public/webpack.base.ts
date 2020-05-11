@@ -44,6 +44,7 @@ const config: webpack.Configuration = {
         resolve: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
+        include: path.resolve(__dirname, '../src'),
       },
       // LESS & CSS
       {
@@ -96,7 +97,7 @@ const config: webpack.Configuration = {
                 enabled: false,
               },
               pngquant: {
-                quality: '65-90',
+                quality: [0.65, 0.9],
                 speed: 4,
               },
               gifsicle: {
@@ -125,6 +126,9 @@ const config: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, '../src'),
+      '@components': path.resolve(__dirname, '../src/components'),
+      '@css': path.resolve(__dirname, '../src/assets/css'),
+      '@img': path.resolve(__dirname, '../src/assets/img'),
     },
   },
   plugins: [
