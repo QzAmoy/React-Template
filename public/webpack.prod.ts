@@ -5,6 +5,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import base from './webpack.base';
 
 const smp = new SpeedMeasurePlugin();
@@ -37,6 +38,7 @@ const config: webpack.Configuration = smp.wrap(
           extractComments: false,
         }),
         new OptimizeCSSAssetsPlugin({}),
+        new BundleAnalyzerPlugin(),
       ],
     },
   })

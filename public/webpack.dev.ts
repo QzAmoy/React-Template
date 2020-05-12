@@ -2,13 +2,9 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import base from './webpack.base';
 
-const smp = new SpeedMeasurePlugin();
-
-const config: webpack.Configuration = smp.wrap(
+const config: webpack.Configuration = 
   merge(base, {
     mode: 'development',
     output: {
@@ -29,9 +25,7 @@ const config: webpack.Configuration = smp.wrap(
     plugins: [
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new BundleAnalyzerPlugin(),
     ],
-  })
-);
+  });
 
 export default config;

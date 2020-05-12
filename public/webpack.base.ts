@@ -8,7 +8,6 @@ import ManifestPlugin from 'webpack-manifest-plugin';
 const config: webpack.Configuration = {
   context: path.resolve(__dirname, '../src'),
   entry: {
-    vendors: ['react', 'react-dom'],
     main: path.resolve(__dirname, '../src'),
   },
   output: {
@@ -68,8 +67,8 @@ const config: webpack.Configuration = {
             loader: 'less-loader',
             options: {
               sourceMap: true,
-              strictMath: true,
               noIeCompat: true,
+              javascriptEnabled: true,
             },
           },
         ],
@@ -144,8 +143,33 @@ const config: webpack.Configuration = {
   ],
   optimization: {
     splitChunks: {
-      name: 'vendors',
       chunks: 'all',
+      minSize: 30000, // 形成一个新代码块最小的体积
+      maxAsyncRequests: 5, // 按需加载时候最大的并行请求数
+      maxInitialRequests: 3, // 最大初始化请求数
+      automaticNameDelimiter: '~', // 打包分割符
+      name: true,
+      cacheGroups: {
+        default: {
+          test: /(react|react-dom|react-dom-router|redux|react-redux)/,
+          name: 'vendor',
+          chunks: 'all',
+          priority: -10,
+        },
+        common: {
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          priority: -30,
+        },
+        'async-commons': {
+          // 异步加载公共包、组件等
+          chunks: 'async',
+          minChunks: 2,
+          name: 'async-commons',
+          priority: -20,
+        },
+      },
     },
     runtimeChunk: {
       name: 'manifest',
