@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   lang: Langs.ZH,
-  isLogin: false,
+  isLogin: true,
 };
 const sysConfigs = (
   state = initialState,

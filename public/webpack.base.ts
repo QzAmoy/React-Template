@@ -49,7 +49,9 @@ const config: webpack.Configuration = {
       {
         test: /\.css|\.less$/,
         use: [
-          { loader: 'style-loader' },
+          {
+            loader: 'style-loader',
+          },
           { loader: MiniCssExtractPlugin.loader },
           {
             loader: 'css-loader',
@@ -82,7 +84,7 @@ const config: webpack.Configuration = {
               hash: 'sha512',
               limit: 10000,
               publicPath: '/',
-              name: 'assets/img/[name].[hash:8].[ext]',
+              name: 'assets/img/[name].[contenthash:8].[ext]',
             },
           },
           {
@@ -116,7 +118,7 @@ const config: webpack.Configuration = {
           hash: 'sha512',
           limit: 50,
           publicPath: '/',
-          name: 'assets/font/[name].[hash:8].[ext]',
+          name: 'assets/font/[name].[contenthash:8].[ext]',
         },
       },
     ],
@@ -153,7 +155,7 @@ const config: webpack.Configuration = {
         default: {
           test: /(react|react-dom|react-dom-router|redux|react-redux)/,
           name: 'vendor',
-          chunks: 'all',
+          chunks: 'initial',
           priority: -10,
         },
         common: {

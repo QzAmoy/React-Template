@@ -5,7 +5,7 @@ import PrivateRouteWithSubRoutes from '@components/PrivateRouteWithSubRoutes';
 import Loading from '@components/Loading';
 import privateRoutes from '@/routes/privateRoutes';
 import baseRoutes from '@/routes/baseRoutes';
-import '@css/index.css';
+import '@css/common.css';
 
 const App = () => {
   return (
