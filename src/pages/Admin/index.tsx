@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import Icon from '@components/Icon';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import './index.less';
 
 const { Sider, Header, Content, Footer } = Layout;
@@ -31,11 +31,9 @@ class Index extends Component<IProps, IState> {
         </Sider>
         <Layout>
           <Header>
-            <Icon
-              iconType={collapsed ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'}
-              className="menu-trigger"
-              onClick={this.handleToggleCollapsed}
-            />
+            <span className="menu-trigger" onClick={this.handleToggleCollapsed}>
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </span>
           </Header>
           <Content>Content</Content>
           <Footer>Footer</Footer>

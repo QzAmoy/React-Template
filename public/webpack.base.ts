@@ -153,9 +153,17 @@ const config: webpack.Configuration = {
       name: true,
       cacheGroups: {
         default: {
-          test: /(react|react-dom|react-dom-router|redux|react-redux)/,
-          name: 'vendor',
+          name: 'base',
           chunks: 'initial',
+        },
+        icon: {
+          name: 'icon',
+          test: /[\\/]node_modules[\\/]@ant-design[\\/]icons/,
+        },
+        vendor: {
+          name: 'vendor',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
           priority: -10,
         },
         common: {
