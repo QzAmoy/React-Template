@@ -3,12 +3,14 @@ import {
   Langs,
   SET_LANG,
   SET_LOGIN_STATE,
+  SET_AUTH,
   SysConfigActionTypes,
 } from './types';
 
 const initialState = {
   lang: Langs.ZH,
   isLogin: true,
+  auth: ['userInfo'],
 };
 const sysConfigs = (
   state = initialState,
@@ -24,6 +26,11 @@ const sysConfigs = (
       return {
         ...state,
         isLogin: action.isLogin,
+      };
+    case SET_AUTH:
+      return {
+        ...state,
+        auth: action.auth,
       };
     default:
       return state;

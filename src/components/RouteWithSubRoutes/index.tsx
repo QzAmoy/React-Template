@@ -6,9 +6,13 @@ export default (route: IRoute) => {
   return (
     <Route
       path={route.path}
-      render={(props) =>
-        createElement(lazy(route.component), { ...props, routes: route.routes })
-      }
+      render={(props) => {
+        document.title = route.title;
+        return createElement(lazy(route.component), {
+          ...props,
+          routes: route.routes,
+        });
+      }}
     />
   );
 };
