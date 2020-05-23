@@ -26,7 +26,7 @@ class Index extends Component<IProps, IState> {
     const { collapsed } = this.state;
     return (
       <Layout id="admin-layout">
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Sider width={180} trigger={null} collapsible collapsed={collapsed}>
           sider
         </Sider>
         <Layout>
