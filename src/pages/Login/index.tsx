@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteChildrenProps } from 'react-router-dom';
 import { RootState } from '@/store';
-import { IsLogin } from '@/store/sysConfigs/types';
+import { IsLogin } from '@/store/auth/types';
 
 interface IProps extends RouteChildrenProps {
   isLogin: IsLogin;
@@ -21,6 +21,6 @@ class Index extends Component<IProps> {
 }
 
 const mapStateToprops = (state: RootState) => ({
-  isLogin: state.sysConfigs.isLogin,
+  isLogin: state.auth.isLogin,
 });
 export default withRouter(connect(mapStateToprops)(Index));

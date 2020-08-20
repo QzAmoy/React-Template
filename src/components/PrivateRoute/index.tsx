@@ -10,7 +10,7 @@ interface IProps extends RouteProps {
 
 export default (props: IProps) => {
   const { component, ...rest } = props;
-  const isLogin = useSelector((store: RootState) => store.sysConfigs.isLogin);
+  const isLogin = useSelector((store: RootState) => store.auth.isLogin);
   return (
     <Route
       {...rest}

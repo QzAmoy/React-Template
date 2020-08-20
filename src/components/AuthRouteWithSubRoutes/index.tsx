@@ -5,7 +5,7 @@ import { RootState } from '@/store';
 import { Route as IRoute } from '@/routes/types';
 
 export default (route: IRoute) => {
-  const auth = useSelector((store: RootState) => store.sysConfigs.auth);
+  const auth = useSelector((store: RootState) => store.auth.auth);
   return (
     <Route
       path={route.path}

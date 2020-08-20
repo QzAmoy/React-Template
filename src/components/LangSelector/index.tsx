@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Langs } from '@/store/sysConfigs/types';
-import { setLang } from '@/store/sysConfigs/actions';
+import  setLang  from '@/store/sysConfigs/actions';
 
 export default () => {
   const dispatch = useDispatch();
