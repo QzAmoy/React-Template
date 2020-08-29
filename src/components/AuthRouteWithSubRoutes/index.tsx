@@ -1,25 +1,23 @@
-import React, { createElement, lazy } from 'react';
+import React, { lazy, memo } from 'react';
 import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Route as IRoute } from '@/routes/types';
 
-export default (route: IRoute) => {
+export default memo((route: IRoute) => {
   const auth = useSelector((store: RootState) => store.auth.auth);
+  const PageComponent = lazy(route.component);
   return (
     <Route
       path={route.path}
       render={(props) => {
-        const hasAuth = auth.indexOf(route.authCode) !== -1;
+        const hasAuth = auth.includes(route.authCode);
         if (hasAuth) {
           document.title = route.title;
-          return createElement(lazy(route.component), {
-            ...props,
-            routes: route.routes,
-          });
+          return <PageComponent {...props} routes={route.routes} />;
         }
         return <div>no auth</div>;
       }}
     />
   );
-};
+});

@@ -14,7 +14,7 @@ const auth = (state = initialState, action: AuthActionTypes): AuthState => {
     case SET_AUTH:
       return {
         ...state,
-        auth: action.auth,
+        auth: [...state.auth, ...action.auth],
       };
     default:
       return state;
