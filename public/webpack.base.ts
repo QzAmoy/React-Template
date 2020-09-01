@@ -131,6 +131,7 @@ const config: webpack.Configuration = {
       '@components': path.resolve(__dirname, '../src/components'),
       '@css': path.resolve(__dirname, '../src/assets/css'),
       '@img': path.resolve(__dirname, '../src/assets/img'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
     },
   },
   plugins: [

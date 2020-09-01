@@ -1,22 +1,18 @@
 import React, { createElement } from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { Routes } from '@/routes/types';
+import { Route as IRoute } from '@/routes/types';
 
-interface IProps extends RouteProps {
-  routes?: Routes;
-}
-
-export default (props: IProps) => {
-  const { component, ...rest } = props;
+export default (props: IRoute) => {
+  const { component, routes, ...rest } = props;
   const isLogin = useSelector((store: RootState) => store.auth.isLogin);
   return (
     <Route
       {...rest}
       render={(renderProps) =>
         isLogin ? (
-          createElement(component, { ...renderProps, routes: props.routes })
+          createElement(component, { ...renderProps, routes })
         ) : (
           <Redirect
             to={{

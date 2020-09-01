@@ -2,7 +2,7 @@ import { AuthState, SET_LOGIN_STATE, SET_AUTH, AuthActionTypes } from './types';
 
 const initialState = {
   isLogin: true,
-  auth: ['userInfo'],
+  auth: ['userInfo', 'userInfo2'],
 };
 const auth = (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {

@@ -1,16 +1,18 @@
+import Loadable from '@utils/loadable';
+
 const baseRoutes = [
   {
     title: '主页',
     key: 'index',
     path: ['/', '/home'],
     exact: true,
-    component: () => import('@/pages/Home'),
+    component: Loadable(() => import('@/pages/Home')),
   },
   {
     title: '登录',
     key: 'login',
     path: '/login',
-    component: () => import('@/pages/Login'),
+    component: Loadable(() => import('@/pages/Login')),
   },
 ];
 

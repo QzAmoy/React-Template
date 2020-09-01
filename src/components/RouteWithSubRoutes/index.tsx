@@ -1,16 +1,18 @@
-import React, { createElement, lazy } from 'react';
+import React, { createElement } from 'react';
 import { Route } from 'react-router-dom';
 import { Route as IRoute } from '@/routes/types';
 
-export default (route: IRoute) => {
+export default (props: IRoute) => {
+  console.log('route', props);
+  const { component, ...rest } = props;
   return (
     <Route
-      path={route.path}
-      render={(props) => {
-        document.title = route.title;
-        return createElement(lazy(route.component), {
-          ...props,
-          routes: route.routes,
+      path={rest.path}
+      render={(renderProps) => {
+        document.title = rest.title;
+        return createElement(component, {
+          ...renderProps,
+          routes: rest.routes,
         });
       }}
     />

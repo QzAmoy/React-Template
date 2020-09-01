@@ -1,15 +1,12 @@
-import { ComponentType } from 'react';
+import { ReactElement } from 'react';
+import { RouteProps } from 'react-router-dom';
 
-export interface Route {
+export interface Route extends RouteProps {
   title: string;
   key: string;
-  component?: () => Promise<{ default: ComponentType<any> }>;
-  path?: string | string[];
-  exact?: boolean;
-  sensitive?: boolean;
-  strict?: boolean;
   authCode?: string;
   routes?: Routes;
+  icon?: ReactElement;
 }
 
 export type Routes = Array<Route>;

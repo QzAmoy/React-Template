@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+import AuthRouteWithSubRoutes from '@components/AuthRouteWithSubRoutes';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Routes } from '@/routes/types';
-import PageContent from './components/PageContent';
+import NavMenu from './components/NavMenu';
 import './index.less';
 
-const { Sider, Header, Footer } = Layout;
+const { Sider, Header, Content, Footer } = Layout;
 
 interface IProps {
   routes: Routes;
@@ -32,7 +34,7 @@ class Index extends Component<IProps, IState> {
     return (
       <Layout id="admin-layout">
         <Sider width={180} trigger={null} collapsible collapsed={collapsed}>
-          sider
+          <NavMenu collapsed={collapsed} />
         </Sider>
         <Layout>
           <Header>
@@ -40,7 +42,15 @@ class Index extends Component<IProps, IState> {
               {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </span>
           </Header>
-          <PageContent routes={routes} />
+          <Content>
+            content
+            <Switch>
+              {routes.map((route) => (
+                <AuthRouteWithSubRoutes {...route} />
+              ))}
+              <Route render={() => <div>404</div>} />
+            </Switch>
+          </Content>
           <Footer>Footer</Footer>
         </Layout>
       </Layout>
