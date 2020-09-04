@@ -35,7 +35,7 @@ const privateRoutes = [
     routes: [
       {
         title: '用户信息',
-        key: 'userInfo',
+        key: 'userInfo3',
         authCode: 'userInfo',
         path: ['/admin', '/admin/user-info'],
         exact: true,
@@ -43,7 +43,7 @@ const privateRoutes = [
       },
       {
         title: '用户信息2',
-        key: 'userInfo2',
+        key: 'userInfo4',
         authCode: 'userInfo2',
         path: '/admin/user-info2',
         exact: true,

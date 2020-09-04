@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import AuthPageHOC from '@components/AuthPageHOC';
 
 interface IProps {}
 interface IState {
@@ -30,4 +31,4 @@ class Index extends PureComponent<IProps, IState> {
   }
 }
 
-export default Index;
+export default AuthPageHOC(['userInfo'], ['admin'])(Index);

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { Switch, Route } from 'react-router-dom';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import AuthRouteWithSubRoutes from '@components/AuthRouteWithSubRoutes';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Routes } from '@/routes/types';
+import { RootState } from '@/store';
+import { setCollapsed, setOpenKeys } from '@/store/sysConfigs/actions';
 import NavMenu from './components/NavMenu';
 import './index.less';
 
@@ -11,30 +15,27 @@ const { Sider, Header, Content, Footer } = Layout;
 
 interface IProps {
   routes: Routes;
-}
-interface IState {
   collapsed: boolean;
+  currentOpenKeys: Array<string>;
+  dispatch: Dispatch;
 }
+interface IState {}
 class Index extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      collapsed: false,
-    };
-  }
-
   handleToggleCollapsed = (): void => {
-    const { collapsed } = this.state;
-    this.setState({ collapsed: !collapsed });
+    const { collapsed, currentOpenKeys, dispatch } = this.props;
+    if (collapsed) {
+      dispatch(setOpenKeys(currentOpenKeys));
+    }
+    dispatch(setCollapsed(!collapsed));
   };
 
   render() {
-    const { collapsed } = this.state;
+    const { collapsed } = this.props;
     const { routes } = this.props;
     return (
       <Layout id="admin-layout">
         <Sider width={180} trigger={null} collapsible collapsed={collapsed}>
-          <NavMenu collapsed={collapsed} />
+          <NavMenu />
         </Sider>
         <Layout>
           <Header>
@@ -43,7 +44,6 @@ class Index extends Component<IProps, IState> {
             </span>
           </Header>
           <Content>
-            content
             <Switch>
               {routes.map((route) => (
                 <AuthRouteWithSubRoutes {...route} />
@@ -57,5 +57,8 @@ class Index extends Component<IProps, IState> {
     );
   }
 }
-
-export default Index;
+const mapStateTopProps = (state: RootState) => {
+  const { collapsed, currentOpenKeys } = state.sysConfigs;
+  return { collapsed, currentOpenKeys };
+};
+export default connect(mapStateTopProps)(Index);

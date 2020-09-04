@@ -3,28 +3,28 @@ import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import privateRoutes from '@/routes/privateRoutes';
 import { Route as IRoute } from '@/routes/types';
+import { connect } from 'react-redux';
+import { RootState } from '@/store';
+import { Dispatch } from 'redux';
+import {
+  setSelectedKeys,
+  setOpenKeys,
+  setCurrentOpenKeys,
+} from '@/store/sysConfigs/actions';
 
 const { SubMenu } = Menu;
 
 interface IProps {
   collapsed: boolean;
-}
-interface IState {
   openKeys: Array<string>;
   selectedKeys: Array<string>;
+  dispatch: Dispatch;
 }
+interface IState {}
 
 class NavMenu extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      openKeys: [],
-      selectedKeys: [],
-    };
-  }
-
   renderMenu = (routes: Array<IRoute>) => {
-    const { selectedKeys } = this.state;
+    const { selectedKeys } = this.props;
     return routes.map((route: IRoute) => {
       if (route.routes && route.routes.length !== 0) {
         return (
@@ -46,22 +46,23 @@ class NavMenu extends Component<IProps, IState> {
   };
 
   handleItemClick = (e: import('rc-menu/lib/interface').MenuInfo) => {
-    this.setState({
-      selectedKeys: [`${e.key}`],
-    });
+    const { dispatch, collapsed, openKeys } = this.props;
+    if (collapsed) {
+      dispatch(setCurrentOpenKeys(openKeys));
+    }
+    dispatch(setSelectedKeys([`${e.key}`]));
   };
 
   handleOpenChange = (openKeys: Array<string>) => {
+    const { dispatch } = this.props;
     if (openKeys.length > 1) {
       openKeys.shift();
     }
-    this.setState({
-      openKeys,
-    });
+    dispatch(setOpenKeys(openKeys));
   };
 
   render() {
-    const { selectedKeys, openKeys } = this.state;
+    const { selectedKeys, openKeys } = this.props;
     return (
       <Menu
         mode="inline"
@@ -76,5 +77,8 @@ class NavMenu extends Component<IProps, IState> {
     );
   }
 }
-
-export default NavMenu;
+const mapStateToProps = (state: RootState) => {
+  const { openKeys, selectedKeys, collapsed } = state.sysConfigs;
+  return { openKeys, selectedKeys, collapsed };
+};
+export default connect(mapStateToProps)(NavMenu);
