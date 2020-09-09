@@ -39,7 +39,14 @@
         "SwitchCase": 1
       }
     ],
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["draft"]
+      }
+    ]
   },
   "globals": {
     "window": true,

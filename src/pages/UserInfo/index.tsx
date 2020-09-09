@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import AuthPageHOC from '@components/AuthPageHOC';
+import LangSelector from '@components/LangSelector';
 
 interface IProps {}
 interface IState {
@@ -8,26 +9,16 @@ interface IState {
 class Index extends PureComponent<IProps, IState> {
   timeout = null;
 
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      index: 0,
-    };
-  }
-
-  componentDidMount() {
-    this.timeout = setTimeout(() => {
-      this.setState({ index: 1 });
-    }, 1000);
-  }
-
   componentWillUnmount() {
     clearTimeout(this.timeout);
   }
 
   render() {
-    const { index } = this.state;
-    return <div>UserInfo{index}</div>;
+    return (
+      <div>
+        <LangSelector />
+      </div>
+    );
   }
 }
 

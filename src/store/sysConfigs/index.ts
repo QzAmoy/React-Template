@@ -1,3 +1,4 @@
+import produce from 'immer';
 import {
   SysConfigState,
   Langs,
@@ -10,7 +11,7 @@ import {
   SET_LOAD_STATUS,
 } from './types';
 
-const initialState = {
+const initialState:SysConfigState = {
   lang: Langs.ZH,
   collapsed: false,
   selectedKeys: [],
@@ -24,35 +25,29 @@ const sysConfigs = (
 ): SysConfigState => {
   switch (action.type) {
     case SET_LANG:
-      return {
-        ...state,
-        lang: action.lang,
-      };
+      return produce(state, (draft) => {
+        draft.lang = action.lang;
+      });
     case SET_COLLAPSED:
-      return {
-        ...state,
-        collapsed: action.collapsed,
-      };
+      return produce(state, (draft) => {
+        draft.collapsed = action.collapsed;
+      });
     case SET_OPEN_KEYS:
-      return {
-        ...state,
-        openKeys: action.openKeys,
-      };
+      return produce(state, (draft) => {
+        draft.openKeys = action.openKeys;
+      });
     case SET_CURRENT_OPEN_KEYS:
-      return {
-        ...state,
-        currentOpenKeys: action.currentOpenKeys,
-      };
+      return produce(state, (draft) => {
+        draft.currentOpenKeys = action.currentOpenKeys;
+      });
     case SET_SELECTED_KEYS:
-      return {
-        ...state,
-        selectedKeys: action.selectedKeys,
-      };
+      return produce(state, (draft) => {
+        draft.selectedKeys = action.selectedKeys;
+      });
     case SET_LOAD_STATUS:
-      return {
-        ...state,
-        isReload: action.isReload,
-      };
+      return produce(state, (draft) => {
+        draft.isReload = action.isReload;
+      });
     default:
       return state;
   }

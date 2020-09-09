@@ -16,10 +16,8 @@ export enum Langs {
   EN = 'en_US',
 }
 
-export type Lang = string;
-
 export interface SysConfigState {
-  lang: Lang;
+  lang: string;
   collapsed: boolean;
   selectedKeys: Array<string>;
   openKeys: Array<string>;
@@ -29,7 +27,7 @@ export interface SysConfigState {
 
 export interface SetLangAction {
   type: SET_LANG;
-  lang: Lang;
+  lang: string;
 }
 export interface SetCollapsedAction {
   type: SET_COLLAPSED;

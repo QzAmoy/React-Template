@@ -1,21 +1,20 @@
+import produce from 'immer';
 import { AuthState, SET_LOGIN_STATE, SET_AUTH, AuthActionTypes } from './types';
 
-const initialState = {
+const initialState: AuthState = {
   isLogin: true,
   auth: ['userInfo', 'userInfo2'],
 };
 const auth = (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {
     case SET_LOGIN_STATE:
-      return {
-        ...state,
-        isLogin: action.isLogin,
-      };
+      return produce(state, (draft) => {
+        draft.isLogin = action.isLogin;
+      });
     case SET_AUTH:
-      return {
-        ...state,
-        auth: [...state.auth, ...action.auth],
-      };
+      return produce(state, (draft) => {
+        draft.auth = action.auth;
+      });
     default:
       return state;
   }

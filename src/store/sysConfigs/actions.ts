@@ -1,7 +1,6 @@
 import {
   SetLangAction,
   SET_LANG,
-  Lang,
   SetCollapsedAction,
   SET_COLLAPSED,
   SetOpenKeysAction,
@@ -14,7 +13,7 @@ import {
   SET_LOAD_STATUS,
 } from './types';
 
-export const setLang = (lang: Lang): SetLangAction => ({
+export const setLang = (lang: string): SetLangAction => ({
   type: SET_LANG,
   lang,
 });
